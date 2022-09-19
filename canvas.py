@@ -23,8 +23,45 @@ canvas.pack()
 #    canvas.move(circle_1, 1,1)
 #    root.update()
 #    sleep(0.05)
-class circle:
-    def _init_(self):
+class Circle:
+    def __init__(self):
         self.x = 10
         self.y = 10
+        self.size = 50
+        self.speed_x = 3
+        self.speed_y = 2
+        self.canvas_size = 600
+        self.object = canvas.create_oval(self.x, self.y, self.size,self.size, fill="red")
+    def move(self):
+        self.x += self.speed_x
+        self.y += self.speed_y
+        canvas.move(self.object, self.speed_x, self.speed_y)
+        self.check_collision()
+    def check_collision(self):
+        pos = canvas.coords(self.object)
+
+        if pos[0] >= 0:
+                pass
+        else:
+                self.speed_x = -1 * self.speed_x
+        if pos[1] >= 0:
+                pass
+        else:
+                self.speed_y = -1 * self.speed_y
+        if pos[2] <= 600:
+                pass
+        else:
+                self.speed_x = -1 * self.speed_x
+        if pos[3] <= 600:
+                pass
+        else:
+                self.speed_y = -1 * self.speed_y
+from time import sleep
+
+c1 = Circle()
+
+while True:
+        c1.move()
+        root.update()
+        sleep(0.005)
 root.mainloop()
